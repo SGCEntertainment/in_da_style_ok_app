@@ -23,23 +23,27 @@
     </div>
     <div id="unity-fullscreen-button" style="display: none;"></div>
 	
-	<script src="https://raw.githubusercontent.com/odnoklassniki/ok-js-sdk/master/oksdk.js"></script>
+	<script src="https://api.ok.ru/js/fapi5.js"></script>
     <script>
 	
-	OKSDK.init(config, function() 
-	{
-	
-		OKSDK.REST.call('users.getCurrentUser', null, function(status, data, error) 
-		{
-            if (status == 'ok') 
-			{
-                document.getElementById('content').innerHTML = 'Hello World and hi, ' + data.name + '.';
-            } else 
-			{
-                    alert('Unable to retrieve current user ' + OKSDK.Util.toString(error));
-            }
-        });
-    });
+		var rParams = FAPI.Util.getRequestParameters();
+		FAPI.init(rParams["api_server"], rParams["apiconnection"],
+          /*
+          * Первый параметр:
+          * функция, которая будет вызвана после успешной инициализации.
+          */
+          function() {
+              alert("Инициализация прошла успешно");
+              // здесь можно вызывать методы API
+          },
+          /*
+          * Второй параметр:
+          * функция, которая будет вызвана, если инициализация не удалась.
+          */
+          function(error) {
+              alert("Ошибка инициализации");
+          }
+		);
 	
 	var  unityGame;
 	
