@@ -28,23 +28,17 @@
 	
 	OKSDK.init(config, function() 
 	{
-
-            OKSDK.REST.call('users.getCurrentUser', null, function(status, data, error) 
-			{
-                if (status == 'ok') 
-				{
-                    document.getElementById('content').innerHTML = 'Hello World and hi, ' + data.name + '.';
-                } else 
-				{
-                    alert('Unable to retrieve current user ' + OKSDK.Util.toString(error));
-                }
-            });
-
-        }, function(error) 
+	
+		OKSDK.REST.call('users.getCurrentUser', null, function(status, data, error) 
 		{
-            alert('OKSDK error' + OKSDK.Util.toString(error));
-        })
-
+            if (status == 'ok') 
+			{
+                document.getElementById('content').innerHTML = 'Hello World and hi, ' + data.name + '.';
+            } else 
+			{
+                    alert('Unable to retrieve current user ' + OKSDK.Util.toString(error));
+            }
+        });
     });
 	
 	var  unityGame;
